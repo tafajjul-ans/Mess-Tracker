@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#141308">
+
+  <title>Hostel Mess Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+    }
+
+    /* Navbar */
+    nav {
+      background: black;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  nav .logo {
+      height:20px;
+      width:200px;
+      
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      border: yellow solid 2px;
+      border-radius: 50px;
+      
+      
+  }
+    nav a {
+      color: #fff;
+      
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #e0ce24;
+    }
+
+    /* Section separators */
+    .separator {
+      border-bottom: 1px solid #ccc;
+      margin: 15px 0;
+    }
+
+    /* Calendar header */
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .calendar-header button {
+      background: #e0ce24;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .day-name {
+      text-align: center;
+      font-weight: bold;
+      color: #e0ce24;
+    }
+
+    .date-cell {
+      background: #1e1e1e;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .today {
+      border: 2px solid #e0ce24;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .date-number {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .circle-btn {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 1px solid #aaa;
+      margin: 2px;
+      font-size: 12px;
+      line-height: 25px;
+      cursor: pointer;
+      background: transparent;
+      color: #aaa;
+    }
+
+    .circle-btn.lunch.active {
+      background: green;
+      color: #fff;
+      border: none;
+    }
+    .circle-btn.dinner.active {
+      background: blue;
+      color: #fff;
+      border: none;
+    }
+
+    /* Responsive */
+    @media(max-width: 600px) {
+      .calendar-grid {
+        gap: 5px;
+      }
+      .date-cell {
+        padding: 5px;
+        min-height: 70px;
+      }
+      .circle-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+        line-height: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+     <div class="logo">🍴 Hostel Mess Tracker</div>
+    <a style="color:yellow" href="#">Home</a>
+    <a href="stats.html">Stats</a>
+    <a href="table.html">Meals</a>
+    <a href="#">About</a>
+  </nav>
+  <h2 style="text-align:center;color:yellow">🍴 Hostel Mess Tracker</h2>
+  <p style = "text-align:center;color:grey">Tips: L= Lunch , D = Dinner</p>
+  <div class="separator"></div>
+
+  <!-- Calendar -->
+  <div class="calendar-header">
+    <button id="prevMonth">◀</button>
+    <h2 id="monthYear"></h2>
+    <button id="nextMonth">▶</button>
+  </div>
+  <div class="calendar-grid" id="calendar"></div>
+
+  <div class="separator"></div>
+
+  <!-- About Section -->
+  <section style="padding:20px; text-align:center;">
+    <h3>About</h3>
+    <p>Hostel Mess Tracker - Track your lunch & dinner habits easily.  
+       Developer: <b>Tafajjul Ans</b></p>
+  </section>
+
+  <script>
+    const calendarEl = document.getElementById("calendar");
+    const monthYearEl = document.getElementById("monthYear");
+    let currentDate = new Date();
+
+    function renderCalendar(date) {
+      calendarEl.innerHTML = "";
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const today = new Date();
+
+      // Month-Year heading
+      const monthNames = [
+        "January","February","March","April","May","June",
+        "July","August","September","October","November","December"
+      ];
+      monthYearEl.textContent = `${monthNames[month]} ${year}`;
+
+      // Day names
+      const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+      dayNames.forEach(d => {
+        const div = document.createElement("div");
+        div.textContent = d;
+        div.classList.add("day-name");
+        calendarEl.appendChild(div);
+      });
+
+      // First day + total days
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month+1, 0).getDate();
+
+      // Empty cells
+      for(let i=0; i<firstDay; i++) {
+        const empty = document.createElement("div");
+        calendarEl.appendChild(empty);
+      }
+
+      // Dates
+      for(let d=1; d<=daysInMonth; d++) {
+        const cell = document.createElement("div");
+        cell.classList.add("date-cell");
+
+        const dateNumber = document.createElement("div");
+        dateNumber.classList.add("date-number");
+        dateNumber.textContent = d;
+
+        if(d === today.getDate() && month === today.getMonth() && year === today.getFullYear()){
+          dateNumber.classList.add("today");
+        }
+
+        // Buttons
+        const lunchBtn = document.createElement("button");
+        lunchBtn.textContent = "L";
+        lunchBtn.classList.add("circle-btn","lunch");
+
+        const dinnerBtn = document.createElement("button");
+        dinnerBtn.textContent = "D";
+        dinnerBtn.classList.add("circle-btn","dinner");
+
+        const key = `${year}-${month}-${d}`;
+
+        // Load saved state
+        const saved = JSON.parse(localStorage.getItem(key)) || {};
+        if(saved.lunch) lunchBtn.classList.add("active");
+        if(saved.dinner) dinnerBtn.classList.add("active");
+
+        // Events
+        lunchBtn.addEventListener("click", () => {
+          lunchBtn.classList.toggle("active");
+          saveState();
+        });
+        dinnerBtn.addEventListener("click", () => {
+          dinnerBtn.classList.toggle("active");
+          saveState();
+        });
+
+        function saveState(){
+          localStorage.setItem(key, JSON.stringify({
+            lunch: lunchBtn.classList.contains("active"),
+            dinner: dinnerBtn.classList.contains("active")
+          }));
+        }
+
+        cell.appendChild(dateNumber);
+        cell.appendChild(lunchBtn);
+        cell.appendChild(dinnerBtn);
+
+        calendarEl.appendChild(cell);
+      }
+    }
+
+    document.getElementById("prevMonth").onclick = () => {
+      currentDate.setMonth(currentDate.getMonth()-1);
+      renderCalendar(currentDate);
+    };
+    document.getElementById("nextMonth").onclick = () => {
+      currentDate.setMonth(currentDate.getMonth()+1);
+      renderCalendar(currentDate);
+    };
+
+    renderCalendar(currentDate);
+  
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js")
+      .then(() => console.log("✅ Service Worker registered"))
+      .catch(err => console.log("SW fail:", err));
+  }
+
+
+  </script>
+
+</body>
+</html>
