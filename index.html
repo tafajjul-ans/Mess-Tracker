@@ -6,6 +6,7 @@
   <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#141308">
 
+
   <title>Hostel Mess Tracker</title>
   <style>
     body {
@@ -276,15 +277,19 @@
     };
 
     renderCalendar(currentDate);
+    </script>
   
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js")
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
       .then(() => console.log("✅ Service Worker registered"))
-      .catch(err => console.log("SW fail:", err));
+      .catch(err => console.log("❌ Service Worker failed", err));
   }
+</script>
 
 
-  </script>
+
+  
 
 </body>
 </html>
