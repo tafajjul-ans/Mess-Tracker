@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#141308">
+  
   <title>Stats - Meal Tracker</title>
   <style>
     body {
@@ -138,6 +141,11 @@
     }
 
     loadStats();
+    if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js")
+      .then(() => console.log("✅ Service Worker registered"))
+      .catch(err => console.log("SW fail:", err));
+    }
   </script>
 </body>
 </html>
