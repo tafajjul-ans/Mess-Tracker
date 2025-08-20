@@ -1,110 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stats - Meals Tracker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #121212;
-      color: #fff;
-    }
-    nav {
-      
-      background: black;
-      padding: 10px;
-      text-align: center;
-      border-bottom: 1px solid #ccc;
-    
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav .logo {
-      height:20px;
-      width:200px;
-      
-      text-align: center;
-      font-weight: bold;
-      font-size: 16px;
-      border: yellow solid 2px;
-      border-radius: 50px;
-      font-weight: bold;
-      
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 16px;
-      font-weight: bold;
-    }
-    nav ul li {
-      display: inline;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      
-    }
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      padding: 20px;
-    }
-    h1 {
-      color: #141308;
-    }
-    .stats-box {
-      background: #1e1e1e;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 15px 0;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
-    .stats-box p {
-      font-size: 16px;
-      margin: 8px 0;
-    }
-    .highlight {
-      font-weight: bold;
-      color: #e0ce24;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats - Mess Tracker</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#141308">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #fff;
+  }
+  nav {
+    background: black;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+  }
+  nav .logo {
+    font-weight: bold;
+    font-size: 16px;
+    color: #e0ce24;
+    border: 2px solid #e0ce24;
+    padding: 5px 15px;
+    border-radius: 50px;
+  }
+  nav a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 8px;
+  }
+  nav a:hover {
+    color: #e0ce24;
+  }
+  .container {
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #e0ce24;
+  }
+  .stats-box {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  }
+  .stats-box p {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+  .highlight {
+    font-weight: bold;
+    color: #e0ce24;
+  }
+</style>
 </head>
 <body>
-
-  <!-- ✅ Navigation Bar -->
   <nav>
     <div class="logo">🍴 Hostel Mess Tracker</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a style="color:yellow" href="stats.html">Stats</a></li>
-      <li><a href="table.html">Meals</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
+    <div>
+      <a href="index.html">Home</a>
+      <a style="color:yellow" href="stats.html">Stats</a>
+      <a href="table.html">Meals</a>
+      <a href="#">About</a>
+    </div>
   </nav>
 
-  <!-- ✅ Stats Section -->
-  <div class="container">
+  <div class="container stats-box">
     <h1>📊 Monthly Statistics</h1>
-    <div class="stats-box">
-      <p><b>Month:</b> <span id="monthName"></span></p>
-      <p><b>Total Days in Month:</b> <span id="totalDays">0</span></p>
-      <p><b>Days Passed (till today):</b> <span id="daysPassed">0</span></p>
-      <hr>
-      <p><b>Lunch Taken:</b> <span class="highlight" id="lunchCount">0</span></p>
-      <p><b>Dinner Taken:</b> <span class="highlight" id="dinnerCount">0</span></p>
-      <p><b>Total Meals Taken:</b> <span class="highlight" id="totalMeals">0</span></p>
-      <hr>
-      <p><b>Days Ate (Lunch or Dinner):</b> <span class="highlight" id="daysAte">0</span></p>
-      <p><b>Skipped Days:</b> <span class="highlight" id="skippedDays">0</span></p>
-    </div>
+    <p><b>Month:</b> <span id="monthName"></span></p>
+    <p><b>Total Days:</b> <span id="totalDays"></span></p>
+    <p><b>Days Passed:</b> <span id="daysPassed"></span></p>
+    <hr>
+    <p><b>Lunch Taken:</b> <span class="highlight" id="lunchCount">0</span></p>
+    <p><b>Dinner Taken:</b> <span class="highlight" id="dinnerCount">0</span></p>
+    <p><b>Total Meals:</b> <span class="highlight" id="totalMeals">0</span></p>
+    <hr>
+    <p><b>Days Ate:</b> <span class="highlight" id="daysAte">0</span></p>
+    <p><b>Skipped Days:</b> <span class="highlight" id="skippedDays">0</span></p>
   </div>
 
   <script>
@@ -117,17 +98,15 @@
       const year = today.getFullYear();
       const month = today.getMonth();
       const dayToday = today.getDate();
-
       const daysInMonth = new Date(year, month+1, 0).getDate();
 
       for(let d=1; d<=dayToday; d++) {
         const key = `${year}-${month}-${d}`;
         const saved = JSON.parse(localStorage.getItem(key));
-
-        if(saved) {
+        if(saved){
           let ateToday = false;
-          if(saved.lunch) { totalLunch++; ateToday = true; }
-          if(saved.dinner) { totalDinner++; ateToday = true; }
+          if(saved.lunch){ totalLunch++; ateToday = true; }
+          if(saved.dinner){ totalDinner++; ateToday = true; }
           if(ateToday) daysAte++;
         }
       }
@@ -135,11 +114,8 @@
       const skippedDays = dayToday - daysAte;
       const totalMeals = totalLunch + totalDinner;
 
-      // Month name
-      const monthNames = [
-        "January","February","March","April","May","June",
-        "July","August","September","October","November","December"
-      ];
+      const monthNames = ["January","February","March","April","May","June",
+        "July","August","September","October","November","December"];
 
       document.getElementById("monthName").textContent = monthNames[month] + " " + year;
       document.getElementById("totalDays").textContent = daysInMonth;
@@ -153,6 +129,5 @@
 
     loadStats();
   </script>
-
 </body>
 </html>
