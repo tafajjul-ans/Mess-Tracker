@@ -1,11 +1,11 @@
 {
-  "name": "Hostel Mess Tracker",
+  "name": "Mess Tracker",
   "short_name": "MessTracker",
-  "start_url": "./index.html",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#121212",
+  "background_color": "#141308",
   "theme_color": "#141308",
-  "orientation": "portrait",
+  "description": "Track your hostel mess lunch & dinner history easily.",
   "icons": [
     {
       "src": "icons/icon-192.png",
