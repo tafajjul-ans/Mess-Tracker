@@ -1,4 +1,4 @@
-const CACHE_NAME = "mess-tracker-cache-v3.1";
+const CACHE_NAME = "mess-tracker-cache-v4";
 const urlsToCache = [
   "/",
   "/index.html",
