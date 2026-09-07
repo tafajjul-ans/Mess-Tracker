@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MessTracker - Important Update</title>
   <style>
     * {
@@ -15,37 +15,41 @@
       background-color: #0f0d05;
       color: #ffffff;
       text-align: center;
-      padding: 20px;
+      padding: 20px 15px;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 10px;
     }
     .alert-box {
       background: rgba(255, 0, 0, 0.08);
       border: 1px solid rgba(255, 0, 0, 0.25);
       border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 30px;
+      padding: 20px;
+      margin-bottom: 25px;
+      text-align: left;
     }
     h1 {
       color: #ff4d4d;
-      font-size: 26px;
-      margin-bottom: 15px;
+      font-size: 24px;
+      margin-bottom: 12px;
       line-height: 1.4;
+      text-align: center;
     }
     p {
       color: #cccccc;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.6;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      text-align: left;
     }
     .hindi-text {
       color: #ffdf7e;
-      font-size: 15px;
-      margin-top: 6px;
-      margin-bottom: 15px;
+      font-size: 14px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      text-align: left;
     }
     .highlight {
       color: #ffffff;
@@ -54,72 +58,87 @@
       padding: 2px 6px;
       border-radius: 4px;
     }
+    .features-section {
+      margin-top: 25px;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    .features-section h3 {
+      text-align: center;
+      color: #ffc107;
+      margin-bottom: 15px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Play Store Style Horizontal Carousel */
+    .screenshot-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 5px 5px 15px 5px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+    }
+    .screenshot-carousel::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    .screenshot-card {
+      background: #1a1710;
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid #332d1e;
+      flex: 0 0 210px;
+      scroll-snap-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .screenshot-card img {
+      width: 100%;
+      max-width: 190px;
+      border-radius: 8px;
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+      border: 2px solid #332d1e;
+    }
+    .screenshot-card p {
+      font-size: 13px;
+      text-align: center;
+      color: #e0e0e0;
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Download Button */
+    .btn-container {
+      margin-top: 25px;
+      margin-bottom: 30px;
+    }
     .btn {
       display: inline-block;
       color: white; 
       background-color: #28a745;
       border: none; 
       padding: 16px 32px;
-      border-radius: 8px; 
+      border-radius: 12px; 
       font-weight: bold; 
       font-size: 18px;
       cursor: pointer;
       text-decoration: none;
       transition: 0.2s;
-      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-      margin-bottom: 40px;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
       width: 100%;
       max-width: 350px;
+      text-align: center;
     }
     .btn:hover {
       background-color: #218838;
-    }
-    .features-section {
-      margin-top: 30px;
-      text-align: left;
-    }
-    .features-section h3 {
-      text-align: center;
-      color: #ffc107;
-      margin-bottom: 25px;
-      font-size: 22px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .screenshot-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    .screenshot-card {
-      background: #1a1710;
-      border-radius: 12px;
-      padding: 15px;
-      border: 1px solid #332d1e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: 0.3s;
-    }
-    .screenshot-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-    .screenshot-card img {
-      width: 100%;
-      max-width: 240px;
-      border-radius: 8px;
-      height: auto;
-      display: block;
-      margin-bottom: 12px;
-      border: 2px solid #332d1e;
-    }
-    .screenshot-card p {
-      font-size: 14px;
-      text-align: center;
-      color: #e0e0e0;
-      margin: 0;
-      font-weight: 500;
     }
   </style>
 </head>
@@ -127,7 +146,7 @@
   <div class="container">
     
     <div class="alert-box">
-      <h1>⚠️ Old App Is Closed!<br></span></h1>
+      <h1>⚠️ Old App Is Closed!</h1>
       
       <p>Since the old app was based on local storage (without a database), we have completely upgraded and shifted to a new <strong>Real-time Database</strong> in a new repository.</p>
       <p class="hindi-text">Kyunki purana app local storage par based tha (database nahi tha), isliye humne ise completely upgrade karke naye <strong>Real-time Database</strong> ke sath naye repository me shift kar diya hai.</p>
@@ -138,14 +157,11 @@
       <p class="hindi-text">Purana app ab kaam nahi karega. Kripya sabse pehle <span class="highlight">purane app ko uninstall (delete) karein</span> aur niche diye gaye button par click karke naya version download karein!</p>
     </div>
 
-    <!-- Download Link -->
-    <a href="https://messtracker.pages.dev" class="btn">Download New App</a>
-
-    <!-- Screenshots & Features Section -->
+    <!-- Screenshots & Features Carousel Section -->
     <div class="features-section">
-      <h3>✨ New App Features</h3>
+      <h3>✨ App Screenshots</h3>
       
-      <div class="screenshot-grid">
+      <div class="screenshot-carousel">
         <!-- Login Screen -->
         <div class="screenshot-card">
           <img src="screenshot_login.png" alt="Login Screen">
@@ -188,6 +204,11 @@
           <p>👤 User Profile & Settings</p>
         </div>
       </div>
+    </div>
+
+    <!-- Download Link -->
+    <div class="btn-container">
+      <a href="https://messtracker.pages.dev" class="btn">Download New App</a>
     </div>
 
   </div>
