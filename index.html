@@ -2,284 +2,194 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#141308">
-
-  <title>Hostel Mess Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+  <title>MessTracker - Important Update</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #fff;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-    /* Navbar */
-    nav {
-    background: black;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-  }
-  nav .logo {
-    font-weight: bold;
-    font-size: 16px;
-    color: #e0ce24;
-    border: 2px solid #e0ce24;
-    padding: 5px 15px;
-    border-radius: 50px;
-  }
-  nav a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-    margin: 0 8px;
-  }
-  nav a:hover {
-    color: #e0ce24;
-  }
-
-    /* Section separators */
-    .separator {
-      border-bottom: 1px solid #ccc;
-      margin: 15px 0;
-    }
-
-    /* Calendar header */
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-    .calendar-header button {
-      background: #e0ce24;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      padding: 10px;
-    }
-
-    .day-name {
+    body {
+      background-color: #0f0d05;
+      color: #ffffff;
       text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .alert-box {
+      background: rgba(255, 0, 0, 0.08);
+      border: 1px solid rgba(255, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    h1 {
+      color: #ff4d4d;
+      font-size: 26px;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+    p {
+      color: #cccccc;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .hindi-text {
+      color: #ffdf7e;
+      font-size: 15px;
+      margin-top: 6px;
+      margin-bottom: 15px;
+    }
+    .highlight {
+      color: #ffffff;
       font-weight: bold;
-      color: #e0ce24;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
     }
-
-    .date-cell {
-      background: #1e1e1e;
-      border-radius: 8px;
-      padding: 8px;
+    .btn {
+      display: inline-block;
+      color: white; 
+      background-color: #28a745;
+      border: none; 
+      padding: 16px 32px;
+      border-radius: 8px; 
+      font-weight: bold; 
+      font-size: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.2s;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+      margin-bottom: 40px;
+      width: 100%;
+      max-width: 350px;
+    }
+    .btn:hover {
+      background-color: #218838;
+    }
+    .features-section {
+      margin-top: 30px;
+      text-align: left;
+    }
+    .features-section h3 {
       text-align: center;
-      min-height: 80px;
+      color: #ffc107;
+      margin-bottom: 25px;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .screenshot-card {
+      background: #1a1710;
+      border-radius: 12px;
+      padding: 15px;
+      border: 1px solid #332d1e;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      transition: 0.3s;
     }
-
-    .today {
-      border: 2px solid #e0ce24;
-      border-radius: 50%;
-      padding: 5px;
+    .screenshot-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
-
-    .date-number {
+    .screenshot-card img {
+      width: 100%;
+      max-width: 240px;
+      border-radius: 8px;
+      height: auto;
+      display: block;
+      margin-bottom: 12px;
+      border: 2px solid #332d1e;
+    }
+    .screenshot-card p {
       font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .circle-btn {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      border: 1px solid #aaa;
-      margin: 2px;
-      font-size: 12px;
-      line-height: 25px;
-      cursor: pointer;
-      background: transparent;
-      color: #aaa;
-    }
-
-    .circle-btn.lunch.active {
-      background: green;
-      color: #fff;
-      border: none;
-    }
-    .circle-btn.dinner.active {
-      background: blue;
-      color: #fff;
-      border: none;
-    }
-
-    /* Responsive */
-    @media(max-width: 600px) {
-      .calendar-grid {
-        gap: 5px;
-      }
-      .date-cell {
-        padding: 5px;
-        min-height: 70px;
-      }
-      .circle-btn {
-        width: 22px;
-        height: 22px;
-        font-size: 11px;
-        line-height: 22px;
-      }
+      text-align: center;
+      color: #e0e0e0;
+      margin: 0;
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
-  <nav>
-     <div class="logo">🍴 Hostel Mess Tracker</div>
-    <a style="color:yellow" href="#">Home</a>
-    <a href="stats.html">Stats</a>
-    <a href="table.html">Meals</a>
+  <div class="container">
     
-  </nav>
-  <h2 style="text-align:center;color:yellow">🍴 Hostel Mess Tracker</h2>
-  <p style = "text-align:center;color:grey">Tips: L= Lunch , D = Dinner</p>
-  <div class="separator"></div>
+    <div class="alert-box">
+      <h1>⚠️ Old App Is Closed!<br></span></h1>
+      
+      <p>Since the old app was based on local storage (without a database), we have completely upgraded and shifted to a new <strong>Real-time Database</strong> in a new repository.</p>
+      <p class="hindi-text">Kyunki purana app local storage par based tha (database nahi tha), isliye humne ise completely upgrade karke naye <strong>Real-time Database</strong> ke sath naye repository me shift kar diya hai.</p>
+      
+      <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
 
-  <!-- Calendar -->
-  <div class="calendar-header">
-    <button id="prevMonth">◀</button>
-    <h2 id="monthYear"></h2>
-    <button id="nextMonth">▶</button>
+      <p>The old app will no longer work. Please first <span class="highlight">uninstall (delete) the old app</span> and click the button below to download the updated version!</p>
+      <p class="hindi-text">Purana app ab kaam nahi karega. Kripya sabse pehle <span class="highlight">purane app ko uninstall (delete) karein</span> aur niche diye gaye button par click karke naya version download karein!</p>
+    </div>
+
+    <!-- Download Link -->
+    <a href="https://messtracker.pages.dev" class="btn">Download New App</a>
+
+    <!-- Screenshots & Features Section -->
+    <div class="features-section">
+      <h3>✨ New App Features</h3>
+      
+      <div class="screenshot-grid">
+        <!-- Login Screen -->
+        <div class="screenshot-card">
+          <img src="screenshot_login.png" alt="Login Screen">
+          <p>🔒 Secure Login (Student/Manager)</p>
+        </div>
+
+        <!-- Hostel Directory Screen -->
+        <div class="screenshot-card">
+          <img src="screenshot_directory.png" alt="Hostel Directory Screen">
+          <p>👥 Hostel Directory & Contact</p>
+        </div>
+
+        <!-- Payment Screen -->
+        <div class="screenshot-card">
+          <img src="screenshot_payment.png" alt="Payment Screen">
+          <p>💳 Dues Payment & History</p>
+        </div>
+
+        <!-- Meal Calendar Screen -->
+        <div class="screenshot-card">
+          <img src="screenshot_calendar.png" alt="Meal Calendar Screen">
+          <p>📅 Daily Meal Calendar (L/D)</p>
+        </div>
+
+        <!-- Manager Panel: Notice Board -->
+        <div class="screenshot-card">
+          <img src="screenshot_manager_notice.png" alt="Manager Panel Notice Board">
+          <p>📢 Manager: Notice Board</p>
+        </div>
+
+        <!-- Manager Panel: Record Book -->
+        <div class="screenshot-card">
+          <img src="screenshot_manager_recordbook.png" alt="Manager Panel Record Book">
+          <p>📋 Manager: Student Records</p>
+        </div>
+        
+        <!-- Profile Screen -->
+        <div class="screenshot-card">
+          <img src="screenshot_profile.png" alt="Profile Screen">
+          <p>👤 User Profile & Settings</p>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="calendar-grid" id="calendar"></div>
-
-  <div class="separator"></div>
-
-  <!-- About Section -->
-  <section style="padding:20px; text-align:center;">
-    <h3>About</h3>
-    <p>Hostel Mess Tracker - Track your lunch & dinner habits easily.  
-       Developer: <b>Tafajjul Ans</b></p>
-  </section>
-
-  <script>
-    const calendarEl = document.getElementById("calendar");
-    const monthYearEl = document.getElementById("monthYear");
-    let currentDate = new Date();
-
-    function renderCalendar(date) {
-      calendarEl.innerHTML = "";
-      const year = date.getFullYear();
-      const month = date.getMonth();
-      const today = new Date();
-
-      // Month-Year heading
-      const monthNames = [
-        "January","February","March","April","May","June",
-        "July","August","September","October","November","December"
-      ];
-      monthYearEl.textContent = `${monthNames[month]} ${year}`;
-
-      // Day names
-      const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-      dayNames.forEach(d => {
-        const div = document.createElement("div");
-        div.textContent = d;
-        div.classList.add("day-name");
-        calendarEl.appendChild(div);
-      });
-
-      // First day + total days
-      const firstDay = new Date(year, month, 1).getDay();
-      const daysInMonth = new Date(year, month+1, 0).getDate();
-
-      // Empty cells
-      for(let i=0; i<firstDay; i++) {
-        const empty = document.createElement("div");
-        calendarEl.appendChild(empty);
-      }
-
-      // Dates
-      for(let d=1; d<=daysInMonth; d++) {
-        const cell = document.createElement("div");
-        cell.classList.add("date-cell");
-
-        const dateNumber = document.createElement("div");
-        dateNumber.classList.add("date-number");
-        dateNumber.textContent = d;
-
-        if(d === today.getDate() && month === today.getMonth() && year === today.getFullYear()){
-          dateNumber.classList.add("today");
-        }
-
-        // Buttons
-        const lunchBtn = document.createElement("button");
-        lunchBtn.textContent = "L";
-        lunchBtn.classList.add("circle-btn","lunch");
-
-        const dinnerBtn = document.createElement("button");
-        dinnerBtn.textContent = "D";
-        dinnerBtn.classList.add("circle-btn","dinner");
-
-        const key = `${year}-${month}-${d}`;
-
-        // Load saved state
-        const saved = JSON.parse(localStorage.getItem(key)) || {};
-        if(saved.lunch) lunchBtn.classList.add("active");
-        if(saved.dinner) dinnerBtn.classList.add("active");
-
-        // Events
-        lunchBtn.addEventListener("click", () => {
-          lunchBtn.classList.toggle("active");
-          saveState();
-        });
-        dinnerBtn.addEventListener("click", () => {
-          dinnerBtn.classList.toggle("active");
-          saveState();
-        });
-
-        function saveState(){
-          localStorage.setItem(key, JSON.stringify({
-            lunch: lunchBtn.classList.contains("active"),
-            dinner: dinnerBtn.classList.contains("active")
-          }));
-        }
-
-        cell.appendChild(dateNumber);
-        cell.appendChild(lunchBtn);
-        cell.appendChild(dinnerBtn);
-
-        calendarEl.appendChild(cell);
-      }
-    }
-
-    document.getElementById("prevMonth").onclick = () => {
-      currentDate.setMonth(currentDate.getMonth()-1);
-      renderCalendar(currentDate);
-    };
-    document.getElementById("nextMonth").onclick = () => {
-      currentDate.setMonth(currentDate.getMonth()+1);
-      renderCalendar(currentDate);
-    };
-
-    renderCalendar(currentDate);
-  
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js")
-      .then(() => console.log("✅ Service Worker registered"))
-      .catch(err => console.log("SW fail:", err));
-  }
-
-
-  </script>
-
 </body>
 </html>
